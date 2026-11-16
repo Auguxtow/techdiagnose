@@ -1,0 +1,336 @@
+[
+  {
+    "id": "R01",
+    "categoria": "inicializacao",
+    "se": ["nao_liga", "testou_outra_tomada"],
+    "entao": "falha_alimentacao",
+    "cf": 0.9,
+    "tipo": "intermediario",
+    "descricao": "Não liga nem em outra tomada indica falha na alimentação de energia"
+  },
+  {
+    "id": "R02",
+    "categoria": "inicializacao",
+    "se": ["falha_alimentacao", "e_desktop"],
+    "entao": "fonte_queimada",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Falha de alimentação em desktop costuma ser a fonte",
+    "solucao": "Teste da fonte com multímetro e troca da fonte de alimentação",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R03",
+    "categoria": "inicializacao",
+    "se": ["falha_alimentacao", "e_notebook"],
+    "entao": "carregador_defeituoso",
+    "cf": 0.7,
+    "tipo": "diagnostico",
+    "descricao": "Falha de alimentação em notebook costuma ser o carregador ou a bateria",
+    "solucao": "Teste com outro carregador compatível; troca do carregador ou da bateria",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R04",
+    "categoria": "inicializacao",
+    "se": ["liga_mas_nao_inicia_sistema", "barulho_clique_disco"],
+    "entao": "falha_armazenamento",
+    "cf": 0.8,
+    "tipo": "intermediario",
+    "descricao": "Barulho de clique no disco e sistema que não inicia indicam falha no armazenamento"
+  },
+  {
+    "id": "R05",
+    "categoria": "inicializacao",
+    "se": ["liga_mas_nao_inicia_sistema", "mensagem_disco_nao_encontrado"],
+    "entao": "falha_armazenamento",
+    "cf": 0.7,
+    "tipo": "intermediario",
+    "descricao": "Mensagem de disco não encontrado indica falha no armazenamento"
+  },
+  {
+    "id": "R06",
+    "categoria": "inicializacao",
+    "se": ["falha_armazenamento"],
+    "entao": "disco_defeituoso",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Falha no armazenamento indica HD ou SSD com defeito",
+    "solucao": "Backup dos dados, se possível, e troca do HD/SSD",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R07",
+    "categoria": "inicializacao",
+    "se": ["liga_mas_nao_inicia_sistema", "travou_durante_atualizacao"],
+    "entao": "sistema_corrompido",
+    "cf": 0.75,
+    "tipo": "diagnostico",
+    "descricao": "Sistema que parou de iniciar depois de uma atualização interrompida está corrompido",
+    "solucao": "Reparo de inicialização ou restauração do Windows",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R08",
+    "categoria": "inicializacao",
+    "se": ["bipes_ao_ligar", "mexeu_no_hardware_recente"],
+    "entao": "memoria_ram_mal_encaixada",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Bipes ao ligar logo depois de mexer no hardware indicam memória mal encaixada",
+    "solucao": "Retirar, limpar os contatos e reencaixar a memória RAM",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R09",
+    "categoria": "video",
+    "se": ["tela_preta_com_pc_ligado", "monitor_com_luz"],
+    "entao": "problema_video",
+    "cf": 0.8,
+    "tipo": "intermediario",
+    "descricao": "PC e monitor ligados mas sem imagem indicam problema no vídeo"
+  },
+  {
+    "id": "R10",
+    "categoria": "video",
+    "se": ["imagem_com_listras_ou_artefatos"],
+    "entao": "problema_video",
+    "cf": 0.85,
+    "tipo": "intermediario",
+    "descricao": "Listras ou artefatos na imagem indicam problema no vídeo"
+  },
+  {
+    "id": "R11",
+    "categoria": "video",
+    "se": ["problema_video", "mexer_no_cabo_muda_imagem"],
+    "entao": "cabo_video_defeituoso",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Imagem que muda ao mexer no cabo indica cabo de vídeo com defeito",
+    "solucao": "Reencaixar ou trocar o cabo HDMI/DisplayPort",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R12",
+    "categoria": "video",
+    "se": ["problema_video", "piora_em_jogos"],
+    "entao": "placa_video_defeituosa",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Problema de vídeo que piora em jogos indica defeito na placa de vídeo",
+    "solucao": "Teste com outra placa de vídeo e troca da placa",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R13",
+    "categoria": "video",
+    "se": ["problema_video", "atualizou_driver_video"],
+    "entao": "driver_video_problema",
+    "cf": 0.75,
+    "tipo": "diagnostico",
+    "descricao": "Problema de vídeo depois de atualizar o driver indica driver com problema",
+    "solucao": "Reinstalar ou voltar para a versão anterior do driver de vídeo",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R14",
+    "categoria": "video",
+    "se": ["tela_preta_com_pc_ligado", "imagem_aparece_com_lanterna"],
+    "entao": "backlight_queimado",
+    "cf": 0.9,
+    "tipo": "diagnostico",
+    "descricao": "Imagem que só aparece com lanterna indica luz de fundo da tela queimada",
+    "solucao": "Troca do backlight ou da tela do notebook",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R15",
+    "categoria": "superaquecimento",
+    "se": ["desliga_sozinho", "ventoinha_barulhenta"],
+    "entao": "suspeita_superaquecimento",
+    "cf": 0.7,
+    "tipo": "intermediario",
+    "descricao": "Desligar sozinho com ventoinha barulhenta sugere superaquecimento"
+  },
+  {
+    "id": "R16",
+    "categoria": "superaquecimento",
+    "se": ["gabinete_muito_quente"],
+    "entao": "suspeita_superaquecimento",
+    "cf": 0.6,
+    "tipo": "intermediario",
+    "descricao": "Gabinete ou base do notebook muito quente sugere superaquecimento"
+  },
+  {
+    "id": "R17",
+    "categoria": "superaquecimento",
+    "se": ["suspeita_superaquecimento", "sem_limpeza_1_ano"],
+    "entao": "poeira_pasta_termica",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Superaquecimento + falta de limpeza indica acúmulo de poeira",
+    "solucao": "Limpeza interna e troca da pasta térmica",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R18",
+    "categoria": "superaquecimento",
+    "se": ["suspeita_superaquecimento", "ventoinha_parada"],
+    "entao": "cooler_defeituoso",
+    "cf": 0.9,
+    "tipo": "diagnostico",
+    "descricao": "Superaquecimento com ventoinha parada indica cooler com defeito",
+    "solucao": "Troca do cooler",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R19",
+    "categoria": "superaquecimento",
+    "se": ["suspeita_superaquecimento", "lento_ao_esquentar"],
+    "entao": "throttling_termico",
+    "cf": 0.8,
+    "tipo": "intermediario",
+    "descricao": "Ficar lento quando esquenta indica que o processador está reduzindo a velocidade pelo calor"
+  },
+  {
+    "id": "R20",
+    "categoria": "superaquecimento",
+    "se": ["throttling_termico", "usa_em_superficie_macia"],
+    "entao": "ventilacao_obstruida",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Throttling em notebook usado na cama ou no sofá indica saída de ar bloqueada",
+    "solucao": "Usar o notebook sobre superfície rígida ou suporte com ventilação",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R21",
+    "categoria": "superaquecimento",
+    "se": ["throttling_termico", "sem_limpeza_1_ano"],
+    "entao": "poeira_pasta_termica",
+    "cf": 0.75,
+    "tipo": "diagnostico",
+    "descricao": "Throttling + falta de limpeza indica poeira e pasta térmica ressecada",
+    "solucao": "Limpeza interna e troca da pasta térmica",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R22",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "disco_100_porcento", "usa_hd_mecanico"],
+    "entao": "hd_lento",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão com disco sempre em 100% num HD mecânico indica gargalo no disco",
+    "solucao": "Troca do HD por SSD com clonagem do sistema",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R23",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "demora_muito_para_iniciar"],
+    "entao": "excesso_programas_inicializacao",
+    "cf": 0.7,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão que piora na inicialização indica muitos programas abrindo junto com o sistema",
+    "solucao": "Desativar programas desnecessários na inicialização",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R24",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "propagandas_ou_popups"],
+    "entao": "malware",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão com propagandas aparecendo sozinhas indica vírus ou malware",
+    "solucao": "Varredura com antivírus e remoção do malware",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R25",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "ram_menor_8gb", "muitas_abas_abertas"],
+    "entao": "memoria_insuficiente",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão com pouca RAM e muitas abas abertas indica memória insuficiente",
+    "solucao": "Upgrade de memória RAM",
+    "encaminhamento": "bancada"
+  },
+  {
+    "id": "R26",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "disco_quase_cheio"],
+    "entao": "armazenamento_cheio",
+    "cf": 0.75,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão com disco quase cheio indica falta de espaço livre",
+    "solucao": "Limpeza de arquivos temporários e liberação de espaço no disco",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R27",
+    "categoria": "lentidao",
+    "se": ["lento_geral", "atualizacao_em_andamento"],
+    "entao": "atualizacao_segundo_plano",
+    "cf": 0.6,
+    "tipo": "diagnostico",
+    "descricao": "Lentidão durante atualização do Windows indica atualização rodando em segundo plano",
+    "solucao": "Aguardar o fim das atualizações e reiniciar o computador",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R28",
+    "categoria": "internet",
+    "se": ["sem_internet", "outros_aparelhos_conectam"],
+    "entao": "problema_rede_no_pc",
+    "cf": 0.9,
+    "tipo": "intermediario",
+    "descricao": "Só este computador sem internet indica problema de rede no próprio PC"
+  },
+  {
+    "id": "R29",
+    "categoria": "internet",
+    "se": ["problema_rede_no_pc", "adaptador_rede_sumiu"],
+    "entao": "driver_rede_problema",
+    "cf": 0.8,
+    "tipo": "diagnostico",
+    "descricao": "Adaptador de rede que sumiu das configurações indica problema no driver",
+    "solucao": "Reinstalar o driver da placa de rede",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R30",
+    "categoria": "internet",
+    "se": ["problema_rede_no_pc", "conecta_mas_nao_navega"],
+    "entao": "configuracao_ip_dns",
+    "cf": 0.7,
+    "tipo": "diagnostico",
+    "descricao": "Conecta na rede mas não abre sites indica configuração de IP ou DNS errada",
+    "solucao": "Renovar o IP e limpar o DNS (ipconfig /release, /renew e /flushdns)",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R31",
+    "categoria": "internet",
+    "se": ["sem_internet", "luz_internet_roteador_apagada"],
+    "entao": "problema_provedor",
+    "cf": 0.85,
+    "tipo": "diagnostico",
+    "descricao": "Luz de internet do roteador apagada indica falta de sinal do provedor",
+    "solucao": "Entrar em contato com o provedor de internet",
+    "encaminhamento": "remoto"
+  },
+  {
+    "id": "R32",
+    "categoria": "internet",
+    "se": ["sem_internet", "reiniciar_roteador_resolve_pouco"],
+    "entao": "roteador_defeituoso",
+    "cf": 0.7,
+    "tipo": "diagnostico",
+    "descricao": "Internet que volta ao reiniciar o roteador mas cai de novo indica roteador com defeito",
+    "solucao": "Atualizar o firmware ou trocar o roteador",
+    "encaminhamento": "remoto"
+  }
+]
